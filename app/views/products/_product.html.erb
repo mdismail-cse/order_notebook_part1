@@ -1,0 +1,23 @@
+<div id="<%= dom_id product %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= product.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= product.description %>
+  </p>
+  
+
+  <% if action_name != "show" %>
+  <br>
+    <strong><%= link_to "Show this product to see all suppliers", product, style: "background-color: #f56565; color: #fff; padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer;" %></strong>
+    <br>
+    <br>
+    <%= link_to 'Edit this product', edit_product_path(product), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+   <br> 
+    <hr class="mt-6">
+    <br>
+  <% end %>
+</div>

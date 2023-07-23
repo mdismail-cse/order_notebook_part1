@@ -1,0 +1,49 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <%
+=begin%>
+ <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Purchase orders</h1>
+    <%= link_to 'New purchase order', new_purchase_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div> 
+<%
+=end%>
+
+  <div id="purchase_orders" class="min-w-full">
+    <%
+=begin%>
+ <%= render @purchase_orders %> 
+<%
+=end%>
+
+  <!-- app/views/purchase_orders/index.html.erb -->
+
+<h1>Purchase Orders</h1>
+<br>
+<div style="background-color: #f7fafc; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 0.5rem;"> 
+<% @purchase_orders.each do |purchase_order| %>
+  
+  <div style="border: 1px solid #cbd5e0; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem;">
+  <h2>Purchase Order ID: <%= purchase_order.id %></h2>
+  <p>Total Price: <%= @total_prices_per_purchase_order[purchase_order.id] || 0 %></p>
+  <!-- Display other purchase order details if needed -->
+  
+  <% line_item = purchase_order.line_items.first %>
+  <% if line_item.present? %>
+    <p>Purchased By user : <%= line_item.order_user_id %></p>
+  <% else %>
+    <p>No line items for this purchase order.</p>
+  <% end %>
+  <br>
+  <br>
+  </div>
+<% end %>
+
+</div>
+
+
+  </div>
+</div>
