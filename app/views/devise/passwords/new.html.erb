@@ -1,16 +1,71 @@
-<h2>Forgot your password?</h2>
+<style>
+  /* Center the form */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  /* Styling for the form */
+  .forgot-password-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  .forgot-password-form h2 {
+    text-align: center;
+  }
+
+  .forgot-password-form .field {
+    margin-bottom: 15px;
+  }
+
+  .forgot-password-form label {
+    display: block;
+    font-weight: bold;
+  }
+
+  .forgot-password-form .email-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .forgot-password-form .blue-button {
+    background-color: #F89880;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .forgot-password-form .blue-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="form-container">
+  <div class="forgot-password-form">
+    <h2>Forgot your password?</h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email-input" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Send reset instructions", class: "blue-button" %>
+      </div>
+    <% end %>
+      <br>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -1,26 +1,84 @@
-<h2>Log in</h2>
+<style>
+  /* Center the login form */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  /* Styling for the login form */
+  .login-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  .login-form h2 {
+    text-align: center;
+  }
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+  .login-form .field {
+    margin-bottom: 15px;
+  }
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  .login-form label {
+    display: block;
+    font-weight: bold;
+  }
 
+  .login-form .email-input,
+  .login-form .password-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .login-form .blue-button {
+    background-color: #F89880;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .login-form .blue-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="login-container">
+  <div class="login-form">
+    <h2>Log in</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email-input" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "password-input" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "blue-button" %>
+      </div>
+    <% end %>
+    <br>
 <%= render "devise/shared/links" %>
+  </div>
+</div>
+
